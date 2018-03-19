@@ -10,13 +10,13 @@
   "author": "Max Strübing <mxstrbng@gmail.com> (https://github.com/mstruebing)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moarwick/elm-webpack-starter"
+    "url": "https://github.com/mstruebing/elmodoro"
   },
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
     "prebuild": "rimraf dist",
-    "build": "webpack",
+    "build": "webpack -p",
     "reinstall": "npm i rimraf && rimraf node_modules && npm uninstall -g elm && npm i -g elm && npm i && elm package install"
   },
   "devDependencies": {

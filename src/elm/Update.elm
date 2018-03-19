@@ -1,5 +1,7 @@
 module Update exposing (update)
 
+-- INTERNALS
+
 import Msgs exposing (Msg(..))
 import Models exposing (Model)
 
