@@ -7,40 +7,31 @@ import Html.Events exposing (onClick)
 
 -- INTERNALS
 
-import Models exposing (Model)
+import Models exposing (Model, Status(..))
 import Msgs exposing (Msg(..))
-
-
--- COMPONENTS
-
-import Components.Hello exposing (hello)
 
 
 view : Model -> Html Msg
 view model =
-    div [ class "container", style [ ( "margin-top", "30px" ), ( "text-align", "center" ) ] ]
-        [ -- inline CSS (literal)
-          div [ class "row" ]
-            [ div [ class "col-xs-12" ]
-                [ div [ class "jumbotron" ]
-                    [ img [ src "static/img/elm.jpg", style styles.img ] [] -- inline CSS (via var)
-                    , hello model -- ext 'hello' component (takes 'model' as arg)
-                    , p [] [ text ("Elm Webpack Starter") ]
-                    , button [ class "btn btn-primary btn-lg", onClick Increment ]
-                        [ -- click handler
-                          span [ class "glyphicon glyphicon-star" ] [] -- glyphicon
-                        , span [] [ text "FTW!" ]
-                        ]
-                    ]
-                ]
+    div []
+        [ div [ class "timer" ]
+            [ text <| (toString <| model.timer // 60) ++ ":" ++ (toString <| model.timer % 60)
+            ]
+        , div [ class "controls" ]
+            [ (if model.status == Paused then
+                button [ onClick Resume ] [ text "RESUME" ]
+               else if model.status == Running then
+                button [ onClick Pause ] [ text "PAUSE" ]
+               else
+                -- 25 minutes * 60 seconds
+                button [ onClick <| Start <| 25 * 60 ] [ text "START" ]
+              )
+            , button [ onClick Stop ] [ text "STOP" ]
+
+            -- 5 minutes * 60 seconds
+            , button [ onClick <| Start <| 5 * 60 ] [ text "SHORT BREAK" ]
+
+            -- 15 minutes * 60 seconds
+            , button [ onClick <| Start <| 15 * 60 ] [ text "LONG BREAK" ]
             ]
         ]
-
-
-styles : { img : List ( String, String ) }
-styles =
-    { img =
-        [ ( "width", "33%" )
-        , ( "border", "4px solid #337AB7" )
-        ]
-    }

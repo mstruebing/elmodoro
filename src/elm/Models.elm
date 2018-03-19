@@ -16,5 +16,6 @@ type alias Model =
 
 type Status
     = Running
+    | Finished
     | Paused
     | Stopped

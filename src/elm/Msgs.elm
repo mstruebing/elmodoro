@@ -1,6 +1,11 @@
 module Msgs exposing (Msg(..))
 
+import Time exposing (Time)
+
 
 type Msg
-    = NoOp
-    | Increment
+    = Start Int
+    | Pause
+    | Resume
+    | Stop
+    | ReduceSeconds Time
