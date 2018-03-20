@@ -15,7 +15,7 @@ import Msgs exposing (Msg(..))
 
 controls : Model -> Html Msg
 controls model =
-    div [ class "controls" ]
+    div [ class "centered controls" ]
         [ (if model.status == Paused then
             button [ onClick Resume ] [ text "RESUME" ]
            else if model.status == Running then

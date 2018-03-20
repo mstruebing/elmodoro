@@ -3,6 +3,7 @@ module View exposing (view)
 -- ELM
 
 import Html exposing (Html, div, img, button, p, span, text)
+import Html.Attributes exposing (class)
 
 
 -- INTERNALS
@@ -19,7 +20,7 @@ import Components.Controls exposing (controls)
 
 view : Model -> Html Msg
 view model =
-    div []
+    div [ class "centered" ]
         [ timer model
         , controls model
         ]

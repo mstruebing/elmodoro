@@ -1,5 +1,22 @@
-$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
-@import '~bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss';
-@import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+body {
+    background-color: #000;
+    color: #fff;
+    height: 100vh;
+    margin: 0;
+}
 
-// can add Boostrap overrides, additional Sass/CSS below...
+#main {
+    height: 100vh;
+    width: 780px;
+    margin: 0 auto;
+    transform: translateY(40%);
+    text-align: center;
+}
+
+.timer {
+}
+
+.controls button {
+    display: block;
+    margin: 0 auto;
+}

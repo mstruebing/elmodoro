@@ -14,6 +14,6 @@ import Msgs exposing (Msg(..))
 
 timer : Model -> Html Msg
 timer model =
-    div [ class "timer" ]
+    div [ class "centered timer" ]
         [ text <| (toString <| model.timer // 60) ++ ":" ++ (toString <| model.timer % 60)
         ]
