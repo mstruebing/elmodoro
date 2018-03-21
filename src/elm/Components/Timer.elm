@@ -4,6 +4,7 @@ module Components.Timer exposing (timer)
 
 import Html exposing (Html, div, text)
 import Html.Attributes exposing (class)
+import String exposing (padRight)
 
 
 -- INTERNALS
@@ -15,5 +16,19 @@ import Msgs exposing (Msg(..))
 timer : Model -> Html Msg
 timer model =
     div [ class "timer" ]
-        [ text <| (toString <| model.timer // 60) ++ ":" ++ (toString <| model.timer % 60)
+        [ text <| getMinutes model ++ ":" ++ getSeconds model
         ]
+
+
+getMinutes : Model -> String
+getMinutes model =
+    (model.timer // 60)
+        |> toString
+        |> padRight 2 '0'
+
+
+getSeconds : Model -> String
+getSeconds model =
+    (model.timer % 60)
+        |> toString
+        |> padRight 2 '0'
