@@ -4,7 +4,7 @@ module Components.Timer exposing (timer)
 
 import Html exposing (Html, div, text)
 import Html.Attributes exposing (class)
-import String exposing (padRight)
+import String exposing (padLeft)
 
 
 -- INTERNALS
@@ -24,11 +24,11 @@ getMinutes : Model -> String
 getMinutes model =
     (model.timer // 60)
         |> toString
-        |> padRight 2 '0'
+        |> padLeft 2 '0'
 
 
 getSeconds : Model -> String
 getSeconds model =
     (model.timer % 60)
         |> toString
-        |> padRight 2 '0'
+        |> padLeft 2 '0'
