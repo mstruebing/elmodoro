@@ -9,9 +9,9 @@ body {
 
 #root {
     height: 100vh;
-    width: 780px;
+    max-width: 780px;
     margin: 0 auto;
-    transform: translateY(40%);
+    transform: translateY(0);
     text-align: center;
 }
 
@@ -21,10 +21,45 @@ body {
 
 .timer {
     border: 1px solid #fff;
-    padding: 2em;
+    height: 40vh;
+    padding: 20vh 0 0 0;
+    margin-bottom: 0;
+    font-size: 3em;
+}
+
+.controls {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 390px;
 }
 
 .controls button {
     display: block;
-    margin: 0 auto;
+    background-color: #fff;
+    padding: 1em;
+    margin: 0.5em 0;
+    border: none;
+    font-weight: bold;
+}
+
+@media (min-width: 1024px) {
+    #root {
+        transform: translateY(40%);
+    }
+
+    .timer {
+        height: unset;
+        padding: 1em;
+        margin-bottom: 1em;
+    }
+
+    .controls {
+        flex-direction: row;
+    }
+
+    .controls button {
+        margin: 0 1em;
+    }
 }
