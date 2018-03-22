@@ -4,7 +4,7 @@ module Update exposing (update)
 
 import Msgs exposing (Msg(..))
 import Models exposing (Model, Status(..))
-import Ports exposing (setTitle)
+import Ports exposing (setTitle, playSound)
 import Utils exposing (timerToTimeString)
 
 
@@ -25,9 +25,9 @@ update msg model =
 
         ReduceSeconds _ ->
             if model.status == Running && model.timer > 0 then
-                ( { model | timer = model.timer - 1 }, setTitle <| timerToTimeString <| model.timer - 1 )
+                ( { model | timer = model.timer - 20 }, setTitle <| timerToTimeString <| model.timer - 20 )
             else if model.status == Running && model.timer == 0 then
                 -- TODO: Trigger sound and Message to stop
-                ( { model | status = Finished }, setTitle "FINISHED" )
+                ( { model | status = Finished }, Cmd.batch [ setTitle "FINISHED", playSound "" ] )
             else
                 ( model, Cmd.none )
