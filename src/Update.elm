@@ -25,7 +25,7 @@ update msg model =
 
         ReduceSeconds _ ->
             if model.status == Running && model.timer > 0 then
-                ( { model | timer = model.timer - 20 }, setTitle <| timerToTimeString <| model.timer - 20 )
+                ( { model | timer = model.timer - 1 }, setTitle <| timerToTimeString <| model.timer - 1 )
             else if model.status == Running && model.timer == 0 then
                 -- TODO: Trigger sound and Message to stop
                 ( { model | status = Finished }, Cmd.batch [ setTitle "FINISHED", playSound "" ] )
