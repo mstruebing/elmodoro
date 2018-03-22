@@ -10,6 +10,6 @@ app.ports.setTitle.subscribe(title => {
     document.title = title;
 });
 
-app.ports.playSound.subscribe(_ => {
+app.ports.playSound.subscribe(() => {
     new Audio('/sound.mp3').play();
 });

@@ -27,7 +27,6 @@ update msg model =
             if model.status == Running && model.timer > 0 then
                 ( { model | timer = model.timer - 1 }, setTitle <| timerToTimeString <| model.timer - 1 )
             else if model.status == Running && model.timer == 0 then
-                -- TODO: Trigger sound and Message to stop
-                ( { model | status = Finished }, Cmd.batch [ setTitle "FINISHED", playSound "" ] )
+                ( { model | status = Finished }, Cmd.batch [ setTitle "FINISHED", playSound () ] )
             else
                 ( model, Cmd.none )
