@@ -56,7 +56,7 @@ path {
 
 @media (min-width: 1024px) {
     #root {
-        transform: translateY(40%);
+        transform: translateY(30%);
     }
 
     .timer {
