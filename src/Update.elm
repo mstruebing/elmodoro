@@ -4,6 +4,8 @@ module Update exposing (update)
 
 import Msgs exposing (Msg(..))
 import Models exposing (Model, Status(..))
+import Ports exposing (setTitle)
+import Utils exposing (timerToTimeString)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -13,19 +15,19 @@ update msg model =
             ( { model | timer = time, status = Running }, Cmd.none )
 
         Pause ->
-            ( { model | status = Paused }, Cmd.none )
+            ( { model | status = Paused }, setTitle "PAUSED" )
 
         Resume ->
-            ( { model | status = Running }, Cmd.none )
+            ( { model | status = Running }, setTitle <| timerToTimeString <| model.timer )
 
         Stop ->
-            ( { model | status = Stopped, timer = 0 }, Cmd.none )
+            ( { model | status = Stopped, timer = 0 }, setTitle "Elmodoro" )
 
         ReduceSeconds _ ->
             if model.status == Running && model.timer > 0 then
-                ( { model | timer = model.timer - 1 }, Cmd.none )
+                ( { model | timer = model.timer - 1 }, setTitle <| timerToTimeString <| model.timer - 1 )
             else if model.status == Running && model.timer == 0 then
                 -- TODO: Trigger sound and Message to stop
-                ( { model | status = Finished }, Cmd.none )
+                ( { model | status = Finished }, setTitle "FINISHED" )
             else
                 ( model, Cmd.none )
