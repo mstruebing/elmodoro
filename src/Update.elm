@@ -24,9 +24,11 @@ update msg model =
             ( { model | status = Stopped, timer = 0 }, setTitle "Elmodoro" )
 
         ReduceSeconds _ ->
-            if model.status == Running && model.timer > 0 then
-                ( { model | timer = model.timer - 1 }, setTitle <| timerToTimeString <| model.timer - 1 )
-            else if model.status == Running && model.timer == 0 then
-                ( { model | status = Finished }, Cmd.batch [ setTitle "FINISHED", playSound () ] )
+            if model.status == Running then
+                if model.timer > 0 then
+                    ( { model | timer = model.timer - 1 }, setTitle <| timerToTimeString <| model.timer - 1 )
+                    -- timer is not greater zero and should therefore always be zero (no negative time)
+                else
+                    ( { model | status = Finished }, Cmd.batch [ setTitle "FINISHED", playSound () ] )
             else
                 ( model, Cmd.none )
