@@ -20,17 +20,16 @@ import Components.Buttons
         , pauseButton
         , resumeButton
         , stopButton
-        , breakButton
         )
 
 
 controls : Model -> Html Msg
 controls model =
     div [ class "controls" ]
-        [ startButton model (Start <| 25 * 60)
-        , pauseButton model Pause
-        , resumeButton model Resume
-        , stopButton model Stop
-        , breakButton model (Start <| 5 * 60) "SHORT BREAK"
-        , breakButton model (Start <| 15 * 60) "LONG BREAK"
+        [ startButton model.status 25 "START"
+        , pauseButton model.status
+        , resumeButton model.status
+        , stopButton model.status
+        , startButton model.status 5 "SHORT BREAK"
+        , startButton model.status 15 "LONG BREAK"
         ]

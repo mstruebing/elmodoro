@@ -4,12 +4,11 @@ module Components.Buttons
         , pauseButton
         , resumeButton
         , stopButton
-        , breakButton
         )
 
 -- ELM
 
-import Html exposing (Html, button, text)
+import Html exposing (Html, text)
 import Html.Events exposing (onClick)
 
 
@@ -19,41 +18,29 @@ import Models exposing (Model, Status(..))
 import Msgs exposing (Msg(..))
 
 
-startButton : Model -> Msg -> Html Msg
-startButton model msg =
-    if model.status == Stopped then
-        button [ onClick msg ] [ text "START" ]
-    else
-        text ""
+startButton : Status -> Int -> String -> Html Msg
+startButton status minutes caption =
+    button (status == Stopped) (Start <| minutes * 60) caption
 
 
-pauseButton : Model -> Msg -> Html Msg
-pauseButton model msg =
-    if model.status == Running then
-        button [ onClick msg ] [ text "PAUSE" ]
-    else
-        text ""
+pauseButton : Status -> Html Msg
+pauseButton status =
+    button (status == Running) Pause "PAUSE"
 
 
-resumeButton : Model -> Msg -> Html Msg
-resumeButton model msg =
-    if model.status == Paused then
-        button [ onClick msg ] [ text "RESUME" ]
-    else
-        text ""
+resumeButton : Status -> Html Msg
+resumeButton status =
+    button (status == Paused) Resume "RESUME"
 
 
-stopButton : Model -> Msg -> Html Msg
-stopButton model msg =
-    if model.status /= Stopped then
-        button [ onClick msg ] [ text "STOP" ]
-    else
-        text ""
+stopButton : Status -> Html Msg
+stopButton status =
+    button (status /= Stopped) Stop "STOP"
 
 
-breakButton : Model -> Msg -> String -> Html Msg
-breakButton model msg caption =
-    if model.status == Stopped then
-        button [ onClick msg ] [ text caption ]
+button : Bool -> Msg -> String -> Html Msg
+button active msg caption =
+    if active then
+        Html.button [ onClick msg ] [ text caption ]
     else
         text ""
