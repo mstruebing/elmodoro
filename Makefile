@@ -5,7 +5,7 @@ wanted = $(shell cat .nvmrc)
 # check if create-elm-app is in your $PATH
 # and node version matches wanted version
 check-requirements:
-	@which elm-app 1>&/dev/null || echo please install create-elm-app
+	@which elm-app >/dev/null || echo please install create-elm-app
 ifneq ($(current), $(wanted))
 	@echo your node verion does not match the wanted one
 	@echo 'your version:' $(current)
