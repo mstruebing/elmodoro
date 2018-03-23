@@ -5,8 +5,11 @@ before_script:
   - npm install --global create-elm-app 
   - elm-app install -y
 script:
-  - elm-app test
-  - elm-app build
+  - make build
+  - make test
 cache:
   directories:
     - "elm-stuff"
+    - "tests/elm-stuff"
+notifications:
+  email: false
