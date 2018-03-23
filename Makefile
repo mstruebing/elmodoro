@@ -29,7 +29,7 @@ start: install
 test: install
 	elm-app test
 
-deploy: clean install build
+deploy: clean install build test
 ifneq ($(git_branch),master)
 	@echo You are not on the master branch.
 	@echo please check out the master and try to deploy again
