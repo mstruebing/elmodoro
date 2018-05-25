@@ -14,7 +14,7 @@ import Html.Events exposing (onClick)
 
 -- INTERNALS
 
-import Models exposing (Model, Status(..))
+import Models exposing (Status(..))
 import Msgs exposing (Msg(..))
 
 
