@@ -8,10 +8,6 @@ const app = Elm.Main.init({
 
 registerServiceWorker();
 
-app.ports.setTitle.subscribe(title => {
-    document.title = title;
-});
-
 app.ports.playSound.subscribe(() => {
     new Audio('/sound.mp3').play();
 });

@@ -2,9 +2,9 @@ module Update exposing (update)
 
 -- INTERNALS
 
-import Msgs exposing (Msg(..))
 import Models exposing (Model, Status(..))
-import Ports exposing (setTitle, playSound)
+import Msgs exposing (Msg(..))
+import Ports exposing (playSound)
 import Utils exposing (timerToTimeString)
 
 
@@ -15,20 +15,22 @@ update msg model =
             ( { model | timer = time, status = Running }, Cmd.none )
 
         Pause ->
-            ( { model | status = Paused }, setTitle "PAUSED" )
+            ( { model | status = Paused }, Cmd.none )
 
         Resume ->
-            ( { model | status = Running }, setTitle <| timerToTimeString <| model.timer )
+            ( { model | status = Running }, Cmd.none )
 
         Stop ->
-            ( { model | status = Stopped, timer = 0 }, setTitle "Elmodoro" )
+            ( { model | status = Stopped, timer = 0 }, Cmd.none )
 
         ReduceSeconds _ ->
             if model.status == Running then
                 if model.timer > 0 then
-                    ( { model | timer = model.timer - 1 }, setTitle <| timerToTimeString <| model.timer - 1 )
+                    ( { model | timer = model.timer - 1 }, Cmd.none )
                     -- timer is not greater zero and should therefore always be zero (no negative time)
+
                 else
-                    ( { model | status = Finished }, Cmd.batch [ setTitle "FINISHED", playSound () ] )
+                    ( { model | status = Finished }, playSound () )
+
             else
                 ( model, Cmd.none )
