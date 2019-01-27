@@ -1,6 +1,6 @@
 module Msgs exposing (Msg(..))
 
-import Time exposing (Time)
+import Time exposing (Posix)
 
 
 type Msg
@@ -8,4 +8,4 @@ type Msg
     | Pause
     | Resume
     | Stop
-    | ReduceSeconds Time
+    | ReduceSeconds Posix

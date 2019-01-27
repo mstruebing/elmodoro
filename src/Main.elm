@@ -1,17 +1,12 @@
-module Main exposing (..)
+module Main exposing (init, main)
 
--- ELM
-
-import Html exposing (program)
-
-
--- INTERNALS
-
+import Browser
+import Models exposing (Model, initialModel)
 import Msgs exposing (Msg(..))
-import Update exposing (update)
-import Models exposing (initialModel, Model)
-import View exposing (view)
 import Subscriptions exposing (subscriptions)
+import Update exposing (update)
+import View exposing (view)
+
 
 
 -- APP
@@ -22,10 +17,10 @@ init =
     ( initialModel, Cmd.none )
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    program
-        { init = init
+    Browser.document
+        { init = \_ -> init
         , view = view
         , update = update
         , subscriptions = subscriptions

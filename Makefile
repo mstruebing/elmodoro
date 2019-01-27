@@ -13,23 +13,19 @@ ifneq ($(current), $(wanted))
 	@echo 'wanted version:' $(wanted)
 	@false
 endif
-	@which elm-app >/dev/null || echo please install create-elm-app
+	@which elm-app >/dev/null || echo please create-elm-app
 
-elm-stuff: elm-package.json tests/elm-package.json
-	elm-app install -y
-
-install: check-requirements elm-stuff
-
-build: install 
+.PHONY: build
+build:
 	elm-app build
 
-start: install
+start:
 	elm-app start
 
-test: install
+test:
 	elm-app test
 
-deploy: clean install build test
+deploy: clean build test
 ifneq ($(git_branch),master)
 	@echo You are not on the master branch.
 	@echo please check out the master and try to deploy again

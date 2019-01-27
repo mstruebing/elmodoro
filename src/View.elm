@@ -1,26 +1,25 @@
 module View exposing (view)
 
 -- ELM
-
-import Html exposing (Html, div, img, button, p, span, text)
-import Html.Attributes exposing (class)
-
-
 -- INTERNALS
+-- COMPONENTS
 
+import Browser exposing (Document)
+import Components.Controls exposing (controls)
+import Components.Timer exposing (timer)
+import Html exposing (Html, button, div, img, p, span, text)
+import Html.Attributes exposing (class)
 import Models exposing (Model, Status(..))
 import Msgs exposing (Msg(..))
 
 
--- COMPONENTS
-
-import Components.Timer exposing (timer)
-import Components.Controls exposing (controls)
-
-
-view : Model -> Html Msg
+view : Model -> Document Msg
 view model =
-    div [ class "centered" ]
-        [ timer model
-        , controls model
+    { title = "Elm Scroll Position Demo"
+    , body =
+        [ div [ class "centered" ]
+            [ timer model
+            , controls model
+            ]
         ]
+    }
