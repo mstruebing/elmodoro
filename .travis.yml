@@ -7,8 +7,5 @@ before_script:
 script:
   - make build
   - make test
-cache:
-  directories:
-    - "elm-stuff"
 notifications:
   email: false

@@ -1,7 +1,4 @@
-port module Ports exposing (setTitle, playSound)
-
-
-port setTitle : String -> Cmd msg
+port module Ports exposing (playSound)
 
 
 port playSound : () -> Cmd msg

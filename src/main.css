@@ -12,10 +12,9 @@ body {
     display: inline;
 }
 
-svg,
-path {
-    color: #fff;
-    fill: #fff;
+.github img {
+	width: 64px;
+	height: 64px;
 }
 
 #root {
