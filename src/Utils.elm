@@ -11,12 +11,12 @@ timerToTimeString time =
 getMinutes : Int -> String
 getMinutes timer =
     (timer // 60)
-        |> toString
+        |> String.fromInt
         |> padLeft 2 '0'
 
 
 getSeconds : Int -> String
 getSeconds timer =
-    (timer % 60)
-        |> toString
+    modBy 60 timer
+        |> String.fromInt
         |> padLeft 2 '0'

@@ -1,21 +1,23 @@
 module Subscriptions exposing (subscriptions)
 
 -- ELM
-
-import Time exposing (Time, second)
-
-
 -- INTERNALS
 
-import Models exposing (Model)
+import Models exposing (Model, Status(..))
 import Msgs exposing (Msg(..))
-import Models exposing (Status(..))
+import Time exposing (every)
+
+
+second : Float
+second =
+    1000
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
     if model.status == Running then
         Sub.batch
-            [ Time.every second ReduceSeconds ]
+            [ every second ReduceSeconds ]
+
     else
         Sub.none

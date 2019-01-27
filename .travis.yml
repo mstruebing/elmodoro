@@ -1,16 +1,14 @@
 language: node_js
 node_js:
-  - "9"
+  - "10"
 before_script:
   - nvm install && nvm use
   - npm install --global create-elm-app 
-  - elm-app install -y
 script:
   - make build
   - make test
 cache:
   directories:
     - "elm-stuff"
-    - "tests/elm-stuff"
 notifications:
   email: false
