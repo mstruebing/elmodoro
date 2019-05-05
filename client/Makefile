@@ -13,7 +13,7 @@ ifneq ($(current), $(wanted))
 	@echo 'wanted version:' $(wanted)
 	@false
 endif
-	@which elm-app >/dev/null || echo please create-elm-app
+	@which elm-app >/dev/null || echo please install create-elm-app
 
 .PHONY: build
 build:
