@@ -25,7 +25,7 @@ import {Elm} from '../elm/src/Main.elm';
 const node = document.getElementById('elm-main');
 
 if (node) {
-  Elm.App.init({
+  Elm.Main.init({
     node,
   });
 }

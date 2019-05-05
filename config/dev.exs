@@ -16,6 +16,7 @@ config :pomodoro, PomodoroWeb.Endpoint,
       "node_modules/webpack/bin/webpack.js",
       "--mode",
       "development",
+      "--hot",
       "--watch-stdin",
       cd: Path.expand("../assets", __DIR__)
     ]
