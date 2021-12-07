@@ -1,0 +1,28 @@
+{
+  "name": "elmodoro",
+  "version": "1.0.0",
+  "description": "A pomodoro application written in elm You can find the code in action on [pomodoro.maex.me](http://pomodoro.maex.me)",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "elm-app build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mstruebing/elmodoro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mstruebing/elmodoro/issues"
+  },
+  "homepage": "https://github.com/mstruebing/elmodoro#readme",
+  "devDependencies": {
+    "create-elm-app": "5.22.0",
+    "elm": "0.19.1-5"
+  }
+}
