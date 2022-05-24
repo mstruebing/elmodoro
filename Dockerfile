@@ -1,12 +1,15 @@
 FROM node:16.13.1-alpine as builder
 
 WORKDIR /src
-COPY . /src
 
+
+ADD package*.json /src
 RUN npm install
+
+ADD . /src
 RUN npm run build
 
-FROM httpd:2.4.51-alpine
+FROM nginx:1.21.6-alpine
 
-COPY --from=builder src/build /usr/local/apache2/htdocs/
+COPY --from=builder /src/build /usr/share/nginx/html
 EXPOSE 80
