@@ -6,7 +6,7 @@ COPY . /src
 RUN npm install
 RUN npm run build
 
-FROM nginx:1.21.6-alpine
+FROM httpd:2.4.51-alpine
 
-COPY --from=builder /src/build /usr/share/nginx/html
+COPY --from=builder src/build /usr/local/apache2/htdocs/
 EXPOSE 80

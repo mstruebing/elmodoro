@@ -15,7 +15,7 @@ spec:
         app: pomodoro
     spec:
       containers:
-        - image: mstruebing/elmodoro
+        - image: mstruebing/elmodoro:latest
           imagePullPolicy: IfNotPresent
           name: pomodoro
 
