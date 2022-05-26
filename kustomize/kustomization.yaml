@@ -4,3 +4,6 @@ resources:
   - namespace.yaml
   - issuer.yaml
   - pomodoro.yaml
+  - imageregistry.yaml
+  - imagepolicy.yaml
+  - imageupdateautomation.yaml

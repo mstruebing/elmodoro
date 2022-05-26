@@ -15,7 +15,7 @@ spec:
         app: pomodoro
     spec:
       containers:
-        - image: mstruebing/elmodoro:1653583569 # {"$imagepolicy": "flux-system:pomodoro"}
+        - image: mstruebing/elmodoro:1653583569 # {"$imagepolicy": "pomodoro:pomodoro"}
           imagePullPolicy: Always
           name: pomodoro
 
