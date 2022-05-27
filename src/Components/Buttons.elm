@@ -1,19 +1,15 @@
-module Components.Buttons
-    exposing
-        ( startButton
-        , pauseButton
-        , resumeButton
-        , stopButton
-        )
+module Components.Buttons exposing
+    ( pauseButton
+    , resumeButton
+    , startButton
+    , stopButton
+    )
 
 -- ELM
+-- INTERNALS
 
 import Html exposing (Html, text)
 import Html.Events exposing (onClick)
-
-
--- INTERNALS
-
 import Models exposing (Status(..))
 import Msgs exposing (Msg(..))
 
@@ -42,5 +38,6 @@ button : Bool -> Msg -> String -> Html Msg
 button active msg caption =
     if active then
         Html.button [ onClick msg ] [ text caption ]
+
     else
         text ""

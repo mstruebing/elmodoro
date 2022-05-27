@@ -1,4 +1,4 @@
-name: docker
+name: ci
 
 on:
   push:
@@ -12,6 +12,16 @@ jobs:
       - name: Set current date as env variable
         id: tagname
         run: echo "::set-output name=timestamp::$(date +'%s')"
+
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: ".node-version"
+
+      - run: npm ci
+      - run: npm run format:validate
+      - run: npm test
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx

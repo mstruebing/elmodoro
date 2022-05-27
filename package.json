@@ -8,7 +8,10 @@
   },
   "scripts": {
     "build": "elm-app build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "elm-format src",
+    "format:validate": "elm-format --validate src/",
+    "start": "elm-app start",
+    "test": "elm-app test"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,7 @@
   "homepage": "https://github.com/mstruebing/elmodoro#readme",
   "devDependencies": {
     "create-elm-app": "5.22.0",
-    "elm": "0.19.1-5"
+    "elm": "0.19.1-5",
+    "elm-format": "^0.8.5"
   }
 }
