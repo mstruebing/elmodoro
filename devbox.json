@@ -1,0 +1,9 @@
+{
+  "packages": ["nodejs@20.6.1"],
+  "shell": {
+    "init_hook": ["export NODE_OPTIONS=--openssl-legacy-provider"],
+    "scripts": {
+      "test": ["echo \"Error: no test specified\" && exit 1"]
+    }
+  }
+}
