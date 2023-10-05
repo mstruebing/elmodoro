@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Set current date as env variable
         id: tagname
-        run: echo "::set-output name=timestamp::$(date +'%s')"
+        run: echo "timestamp=$(date +'%s')" >> GITHUB_OUTPUT
 
       - uses: actions/checkout@v4
       - name: Install devbox
