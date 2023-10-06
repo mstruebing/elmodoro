@@ -1,4 +1,4 @@
-# elmodoro [![Build Status](https://travis-ci.org/mstruebing/elmodoro.svg?branch=master)](https://travis-ci.org/mstruebing/elmodoro)
+# elmodoro [![CI](https://github.com/mstruebing/elmodoro/actions/workflows/ci.yaml/badge.svg)](https://github.com/mstruebing/elmodoro/actions/workflows/ci.yaml)
 
 A pomodoro application written in elm
 You can find the code in action on [pomodoro.maex.me](http://pomodoro.maex.me)
