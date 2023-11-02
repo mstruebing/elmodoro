@@ -26,7 +26,7 @@
   "homepage": "https://github.com/mstruebing/elmodoro#readme",
   "devDependencies": {
     "create-elm-app": "5.22.0",
-    "elm": "0.19.1-5",
+    "elm": "0.19.1-6",
     "elm-format": "^0.8.5"
   }
 }
