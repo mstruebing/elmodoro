@@ -47,13 +47,14 @@ update msg model =
                                 posixToMillis now - posixToMillis last
 
                             elapsedSeconds =
-                                floor (toFloat elapsedMs / 1000)
+                                elapsedMs // 1000
 
                             remaining =
                                 model.timer - elapsedSeconds
                         in
                         if elapsedSeconds <= 0 then
-                            ( { model | lastTick = Just now }, Cmd.none )
+                            -- Not enough time passed; keep lastTick to accumulate
+                            ( model, Cmd.none )
 
                         else if remaining > 0 then
                             ( { model | timer = remaining, lastTick = Just now }, Cmd.none )

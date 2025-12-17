@@ -19,6 +19,29 @@ if ('Notification' in window && Notification.permission === 'default') {
 const sound = new Audio('/sound.mp3');
 sound.preload = 'auto';
 
+// Try to satisfy autoplay policies by priming audio on the first user gesture.
+let audioPrimed = false;
+const primeAudio = async () => {
+  if (audioPrimed) return;
+  audioPrimed = true;
+  try {
+    // Play silently once to unlock playback, then pause.
+    sound.volume = 0.001;
+    const clip = sound.cloneNode(true);
+    clip.volume = 0.001;
+    await clip.play();
+    clip.pause();
+  } catch (err) {
+    console.warn('Audio prime failed', err);
+  } finally {
+    sound.volume = 1;
+  }
+};
+
+['click', 'touchstart', 'keydown'].forEach(evt => {
+  window.addEventListener(evt, primeAudio, { once: true, passive: true });
+});
+
 async function playAlarm() {
   try {
     const clip = sound.cloneNode(true);
