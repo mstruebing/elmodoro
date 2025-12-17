@@ -5,19 +5,16 @@ module Subscriptions exposing (subscriptions)
 
 import Models exposing (Model, Status(..))
 import Msgs exposing (Msg(..))
-import Time exposing (every)
-
-
-second : Float
-second =
-    1000
+import Ports exposing (timerTick, visibilityTick)
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
     if model.status == Running then
         Sub.batch
-            [ every second ReduceSeconds ]
+            [ timerTick TimerTick
+            , visibilityTick VisibilityTick
+            ]
 
     else
         Sub.none

@@ -8,6 +8,13 @@ const app = Elm.Main.init({
 
 registerServiceWorker();
 
+// Request notification permission on page load
+if ('Notification' in window && Notification.permission === 'default') {
+  Notification.requestPermission().catch(err => {
+    console.warn('Notification permission failed', err);
+  });
+}
+
 // Cache and reuse audio to avoid new decodes; clone so overlapping plays work.
 const sound = new Audio('/sound.mp3');
 sound.preload = 'auto';
@@ -24,15 +31,6 @@ async function playAlarm() {
 
 async function notifyAlarm() {
   if (!('Notification' in window)) return;
-
-  if (Notification.permission === 'default') {
-    try {
-      await Notification.requestPermission();
-    } catch (err) {
-      console.warn('Notification permission failed', err);
-    }
-  }
-
   if (Notification.permission !== 'granted') return;
 
   try {
@@ -61,4 +59,28 @@ async function notifyAlarm() {
 app.ports.playSound.subscribe(() => {
   playAlarm();
   notifyAlarm();
+});
+
+// JavaScript-driven timer that resists throttling better than Elm's Time.every
+let timerInterval = null;
+
+app.ports.setTimerActive.subscribe((active) => {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+  
+  if (active) {
+    // Update every 200ms to keep title fresh even when throttled
+    timerInterval = setInterval(() => {
+      app.ports.timerTick.send(Date.now());
+    }, 200);
+  }
+});
+
+// Send immediate update when tab becomes visible
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    app.ports.visibilityTick.send(Date.now());
+  }
 });
