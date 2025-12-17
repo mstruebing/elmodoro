@@ -9,3 +9,5 @@ type Msg
     | Resume
     | Stop
     | ReduceSeconds Posix
+    | TimerTick Int
+    | VisibilityTick Int
