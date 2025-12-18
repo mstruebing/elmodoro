@@ -13,7 +13,7 @@ jobs:
         id: tagname
         run: echo "timestamp=$(date +'%s')" >> $GITHUB_OUTPUT
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Install devbox
         uses: jetpack-io/devbox-install-action@v0.12.0
         with:
