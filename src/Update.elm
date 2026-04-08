@@ -4,7 +4,7 @@ module Update exposing (update)
 
 import Models exposing (Model, Status(..))
 import Msgs exposing (Msg(..))
-import Ports exposing (playSound, setTimerActive)
+import Ports exposing (playSound, saveSettings, setTimerActive)
 import Task
 import Time exposing (Posix, millisToPosix, now, posixToMillis)
 
@@ -66,3 +66,33 @@ update msg model =
 
             else
                 ( model, Cmd.none )
+
+        ToggleSettings ->
+            ( { model | settingsOpen = not model.settingsOpen }, Cmd.none )
+
+        SetPomodoroMinutes minutes ->
+            ( { model | pomodoroMinutes = minutes }
+            , saveSettings
+                { pomodoroMinutes = minutes
+                , shortBreakMinutes = model.shortBreakMinutes
+                , longBreakMinutes = model.longBreakMinutes
+                }
+            )
+
+        SetShortBreakMinutes minutes ->
+            ( { model | shortBreakMinutes = minutes }
+            , saveSettings
+                { pomodoroMinutes = model.pomodoroMinutes
+                , shortBreakMinutes = minutes
+                , longBreakMinutes = model.longBreakMinutes
+                }
+            )
+
+        SetLongBreakMinutes minutes ->
+            ( { model | longBreakMinutes = minutes }
+            , saveSettings
+                { pomodoroMinutes = model.pomodoroMinutes
+                , shortBreakMinutes = model.shortBreakMinutes
+                , longBreakMinutes = minutes
+                }
+            )

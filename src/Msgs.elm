@@ -11,3 +11,7 @@ type Msg
     | ReduceSeconds Posix
     | TimerTick Int
     | VisibilityTick Int
+    | ToggleSettings
+    | SetPomodoroMinutes Int
+    | SetShortBreakMinutes Int
+    | SetLongBreakMinutes Int

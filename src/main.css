@@ -72,3 +72,40 @@ body {
         margin: 0 1em;
     }
 }
+
+.settings-panel {
+    max-width: 390px;
+    margin: 0 auto;
+    border-top: 1px solid #333;
+    padding: 0.8em 0;
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    padding: 0.3em 0;
+}
+
+.setting-row label {
+    flex: 1;
+    text-align: left;
+    font-size: 0.95em;
+}
+
+.setting-row input[type="number"] {
+    width: 56px;
+    padding: 0.3em 0.4em;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    font-size: 0.95em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.setting-row .unit {
+    margin-left: 0.5em;
+    color: #888;
+    font-size: 0.9em;
+    width: 2em;
+}

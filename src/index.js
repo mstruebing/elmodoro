@@ -2,8 +2,31 @@ import './main.css';
 import { Elm } from './Main.elm';
 import registerServiceWorker from './registerServiceWorker';
 
+const STORAGE_KEY = 'elmodoro-settings';
+const DEFAULT_SETTINGS = { pomodoroMinutes: 25, shortBreakMinutes: 5, longBreakMinutes: 15 };
+
+function loadSettings() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      const validInt = (v, fallback) =>
+        Number.isInteger(v) && v >= 1 ? v : fallback;
+      return {
+        pomodoroMinutes:   validInt(parsed.pomodoroMinutes,   DEFAULT_SETTINGS.pomodoroMinutes),
+        shortBreakMinutes: validInt(parsed.shortBreakMinutes, DEFAULT_SETTINGS.shortBreakMinutes),
+        longBreakMinutes:  validInt(parsed.longBreakMinutes,  DEFAULT_SETTINGS.longBreakMinutes),
+      };
+    }
+  } catch (e) {
+    // Ignore errors (private browsing, corrupted data, etc.)
+  }
+  return { ...DEFAULT_SETTINGS };
+}
+
 const app = Elm.Main.init({
-  node: document.getElementById('root')
+  node: document.getElementById('root'),
+  flags: loadSettings()
 });
 
 registerServiceWorker();
@@ -105,5 +128,13 @@ app.ports.setTimerActive.subscribe((active) => {
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) {
     app.ports.visibilityTick.send(Date.now());
+  }
+});
+
+app.ports.saveSettings.subscribe((settings) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+  } catch (e) {
+    console.warn('Failed to save settings to localStorage', e);
   }
 });
